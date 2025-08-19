@@ -1,3 +1,8 @@
+# (sharedlib2 = The file where complete script has been kept) #
+# (sharedlib02 = The 'JobName' or the pipeline name)  #
+# (sharedlib1 = The repo where "sharelib2(file-script) has been kept) #
+
+
 @Library('sharedlib1') _
 pipeline{
     agent any
