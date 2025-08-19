@@ -1,0 +1,41 @@
+@Library('sharedlib1') _
+pipeline{
+    agent any
+    stages{
+        stage('continous Download'){
+            steps{
+                script{
+                    sharedlib2.gitdownload('Git-Aug-25')
+                }
+            }
+        }
+        stage('continous build'){
+            steps{
+                script{
+                    sharedlib2.build()
+                }
+            }
+        }
+        stage('continous Deployement') {
+            steps{
+                script{
+                    sharedlib2.deployement('Sharedlib02' , '10.0.2.194')
+                }
+            }
+        }
+        stage('continous testing') {
+            steps{
+                script{
+                    sharedlib2.testing('Sharedlib02')
+                }
+            }
+        }
+        stage('continous release') {
+            steps{
+                script{
+                    sharedlib2.release('Sharedlib02' , '10.0.2.194')
+                }
+            }
+        }
+    }
+}
