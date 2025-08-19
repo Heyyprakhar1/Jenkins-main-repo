@@ -1,0 +1,17 @@
+node('built-in') {
+    stage('continous Download') {
+        git branch: 'main', url: 'https://github.com/Heyyprakhar1/Git-Aug-25.git'
+    }
+    stage('Continous build') {
+        sh 'python3 Hello.py'
+    }
+    stage('continous Deploy') {
+        sh 'scp /var/lib/jenkins/workspace/Git-Project/Hello.py ubuntu@10.0.2.19:/home/ubuntu/test-app/Hello.py'
+    }
+    stage('continous Testing') {
+        sh 'python3 /var/lib/jenkins/workspace/Git-Project/Hello.py'
+    }
+    stage('continous Release') {
+        sh 'scp /var/lib/jenkins/workspace/Git-Project/Hello.py ubuntu@10.0.2.19:/home/ubuntu/test-app/Hello.py'
+    }
+}
