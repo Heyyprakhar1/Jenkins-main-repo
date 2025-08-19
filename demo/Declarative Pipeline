@@ -1,0 +1,30 @@
+pipeline{
+    agent any 
+    stages{
+        stage('Continous Download') {
+            steps{
+                git branch: 'main', url: 'https://github.com/Heyyprakhar1/Git-Aug-25.git'
+            }
+        }
+        stage('continous Build') {
+            steps{
+                sh 'python3 Hello.py'
+            }
+        }
+        stage('continous Deployement') {
+            steps{
+                sh 'scp /var/lib/jenkins/workspace/Git-Project/Hello.py ubuntu@10.0.2.19:/home/ubuntu/test-app/Hello.py'
+            }
+        }
+        stage('continous Testing') {
+            steps{
+                sh 'python3 /var/lib/jenkins/workspace/Git-Project/Hello.py'
+            }
+        }
+        stage('continous Release') {
+            steps{
+                sh 'scp /var/lib/jenkins/workspace/Git-Project/Hello.py ubuntu@10.0.2.19:/home/ubuntu/test-app/Hello.py'
+            }
+        }
+    }
+}
